@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<publishData>
+  <publishProfile publishUrl="192.168.0.111" deleteExistingFiles="False" ftpAnonymousLogin="False" ftpPassiveMode="True" msdeploySite="Default Web Site/HomeControl" msdeploySiteID="" msdeployRemoteSitePhysicalPath="" msdeployAllowUntrustedCertificate="False" msdeploySkipExtraFilesOnServer="True" msdeployMarkAsApp="True" profileName="Profile1" publishMethod="MSDeploy" replaceMatchingFiles="True" userName="Talbot McInnis" savePWD="True" userPWD="AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAADcyh0SwTRUCuq3lM+jrBxAAAAAACAAAAAAAQZgAAAAEAACAAAADr1S8xGDn8c+v0moyecUxmL+RdD9oHPuDANpUs0yzqVAAAAAAOgAAAAAIAACAAAABY1PS/i1rM2N1TSHDAouf7wLFMEROO7KYzugUvyZKbliAAAADXibhoCOuOqeFW99nJ/9ytSa9yr5y7xmrQAKf2wagJEkAAAACmrCIULtkFuIBfQNqM7Oj+EAKowCuOTSY/eaEl2icrBgm9LNn4OEzbY6YMjLoDTCs+FXQ2Vx9jStsbYScF16oA" SelectedForPublish="True" />
+</publishData>
