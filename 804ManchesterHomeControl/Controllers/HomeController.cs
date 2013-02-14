@@ -156,5 +156,26 @@ namespace _804ManchesterHomeControl.Controllers
                 return ex.Message;
             }
         }
+
+        public ActionResult ChooseRoom()
+        {
+            MyDatabaseEntities dbe = new MyDatabaseEntities();
+
+            ChooseRoomViewModel vm = new ChooseRoomViewModel();
+
+            foreach( Models.Room room in dbe.Rooms )
+            {
+                vm.AddRoom(room.Id, room.RoomName);
+            }
+            
+            return View("ChooseRoomView", vm);
+        }
+
+        public ActionResult ChooseActivity(Int32 RoomId)
+        {
+            System.Diagnostics.Trace.WriteLine("ChooseRoom called");
+
+            return View();
+        }
     }
 }

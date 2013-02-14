@@ -12,18 +12,14 @@ namespace _804ManchesterHomeControl.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Device
+    public partial class RequiredCommand
     {
-        public Device()
-        {
-            this.DeviceCommands = new HashSet<DeviceCommand>();
-        }
-    
-        public string DeviceName { get; set; }
-        public Nullable<int> SerialPort { get; set; }
-        public Nullable<int> BaudRate { get; set; }
         public int Id { get; set; }
+        public int RoomActivityId { get; set; }
+        public int DeviceCommandId { get; set; }
+        public int Sequence { get; set; }
     
-        public virtual ICollection<DeviceCommand> DeviceCommands { get; set; }
+        public virtual DeviceCommand DeviceCommand { get; set; }
+        public virtual RoomActivity RoomActivity { get; set; }
     }
 }

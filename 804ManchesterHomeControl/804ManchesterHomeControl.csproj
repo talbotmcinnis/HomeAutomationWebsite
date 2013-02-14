@@ -101,7 +101,13 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\ImageActionLink.cs" />
+    <Compile Include="Models\Activity.cs">
+      <DependentUpon>MyDatabaseModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Device.cs">
+      <DependentUpon>MyDatabaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DeviceCommand.cs">
       <DependentUpon>MyDatabaseModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\HomeActivities.cs" />
@@ -122,10 +128,20 @@
       <DependentUpon>MyDatabaseModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\MyDeviceDatabase.cs" />
+    <Compile Include="Models\RequiredCommand.cs">
+      <DependentUpon>MyDatabaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Room.cs">
+      <DependentUpon>MyDatabaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RoomActivity.cs">
+      <DependentUpon>MyDatabaseModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\SerialPortWrapper.cs" />
     <Compile Include="Models\WMPWrapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\ActivitiesViewModel.cs" />
+    <Compile Include="ViewModels\ChooseRoomViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\MyDatabase.mdf" />
@@ -243,6 +259,7 @@
     <Content Include="Views\Home\Insteon.cshtml" />
     <Content Include="Views\Home\IR.cshtml" />
     <Content Include="Views\Home\Activities.cshtml" />
+    <Content Include="Views\Home\ChooseRoomView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

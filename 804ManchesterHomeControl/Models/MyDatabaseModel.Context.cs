@@ -26,5 +26,10 @@ namespace _804ManchesterHomeControl.Models
         }
     
         public DbSet<Device> Devices { get; set; }
+        public DbSet<Activity> Activities { get; set; }
+        public DbSet<DeviceCommand> DeviceCommands { get; set; }
+        public DbSet<RequiredCommand> RequiredCommands { get; set; }
+        public DbSet<RoomActivity> RoomActivities { get; set; }
+        public DbSet<Room> Rooms { get; set; }
     }
 }
