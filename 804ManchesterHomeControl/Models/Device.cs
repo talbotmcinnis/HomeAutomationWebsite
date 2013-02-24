@@ -23,6 +23,7 @@ namespace _804ManchesterHomeControl.Models
         public Nullable<int> SerialPort { get; set; }
         public Nullable<int> BaudRate { get; set; }
         public int Id { get; set; }
+        public Boolean HexMode { get; set; }
     
         public virtual ICollection<DeviceCommand> DeviceCommands { get; set; }
     }

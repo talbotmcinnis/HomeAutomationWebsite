@@ -1,0 +1,48 @@
+﻿@using _804ManchesterHomeControl.Helpers;
+
+@model _804ManchesterHomeControl.ViewModels.ChooseActivityViewModel
+
+@{
+    ViewBag.Title = "ChooseActivity";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Welcome to the @Model.RoomName, What do you want to do?</h2>
+<span id="ActivityResult" style="color:Green"></span>
+
+
+@{   int idx = 0; }
+<table>
+    <tr>
+@foreach (KeyValuePair<Int32,String> item in Model.Activities) {
+    
+        <td>
+            @*@Html.ActionLink(item.Value, "ExecuteRoomActivity", new { RoomActivityId = item.Key })*@
+
+            @Ajax.ImageAjaxLink(
+                Url.Content("~/Images/Activities/" + item.Value + ".png"),
+                item.Value, "ExecuteRoomActivity", "Home",
+                new
+                {
+                    RoomActivityId = item.Key, 
+                    randomParam = new Random().Next()
+                },
+                new AjaxOptions() { UpdateTargetId = "ActivityResult" }, new { width = 96, border = 0 })
+
+            @Ajax.ActionLink(
+                    item.Value,
+                    "ExecuteRoomActivity", "Home", 
+                    new { 
+                        RoomActivityId = item.Key, 
+                        randomParam = new Random().Next() }, 
+                    new AjaxOptions() { UpdateTargetId = "ActivityResult" })
+        </td>
+    
+        if( ++idx%3==0 )
+        {
+            @:</tr><tr>
+        }
+    
+}
+        </tr>
+</table>

@@ -11,19 +11,19 @@
 <body>
     <div class="page">
         <div id="header">
-            <div id="title">
+            <div id="title" >
                 <h1>804 Manchester Home Control</h1>
             </div>
             <div id="logindisplay">
                 @*Welcome <strong>@User.Identity.Name</strong>!*@
-                <p>Choose a function</p>
+                <p>Choose a tab:</p>
             </div>
             <div id="menucontainer">
                 <ul id="menu">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Activities", "Activities", "Home")</li>
-                    <li>@Html.ActionLink("Lighting/Thermostat", "Insteon", "Home")</li>
-                    <li>@Html.ActionLink("Audio", "AudioMatrixControl", "Home")</li>
+                    
+                    <li>@Html.ActionLink("Wizard", "ChooseRoom", "Home")</li>
+                    <li>@Html.ActionLink("Device Commands", "AllDeviceCommands", "Home")</li>
                     <li>@Html.ActionLink("IR", "IR", "Home")</li>
                 </ul>
             </div>

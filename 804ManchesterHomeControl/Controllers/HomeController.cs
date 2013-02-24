@@ -14,90 +14,12 @@ namespace _804ManchesterHomeControl.Controllers
     {
         public ActionResult Index()
         {
-            //ViewBag.Message = "Welcome to ASP.NET MVC!";
-
-            return View();
-        }
-
-        public ActionResult Insteon()
-        {
-            return View();
-        }
-
-        public ActionResult AudioMatrixControl()
-        {
             return View();
         }
 
         public ActionResult IR()
         {
             return View();
-        }
-
-        public String AudioAction(String audioActionName, Nullable<int> audioZone, Nullable<int> zoneSource, String wmpURL)
-        {
-            try
-            {
-                if (!String.IsNullOrEmpty(wmpURL))
-                {
-                    WMPWrapper.OpenURL(wmpURL);
-                }
-
-                switch (audioActionName)
-                {
-                    case "OFF":
-                        SerialPortWrapper.SendSerialCommand(String.Format("Z{0}0", audioZone));
-                        break;
-
-                    case "SOURCE":
-                        SerialPortWrapper.SendSerialCommand(String.Format("Z{0}1", audioZone));
-                        SerialPortWrapper.SendSerialCommand(String.Format("S{0}{1}", audioZone, zoneSource));
-                        SerialPortWrapper.SendSerialCommand(String.Format("V{0}29", audioZone));
-                        break;
-
-                    case "VOLUMEUP":
-                        SerialPortWrapper.SendSerialCommand(String.Format("V{0}++", audioZone, zoneSource));
-                        SerialPortWrapper.SendSerialCommand(String.Format("V{0}++", audioZone, zoneSource));
-                        break;
-
-                    case "VOLUMEDOWN":
-                        SerialPortWrapper.SendSerialCommand(String.Format("V{0}--", audioZone, zoneSource));
-                        SerialPortWrapper.SendSerialCommand(String.Format("V{0}--", audioZone, zoneSource));
-                        SerialPortWrapper.SendSerialCommand(String.Format("V{0}--", audioZone, zoneSource));
-                        SerialPortWrapper.SendSerialCommand(String.Format("V{0}--", audioZone, zoneSource));
-                        break;
-
-                    case "TREBLEUP":
-                        SerialPortWrapper.SendSerialCommand(String.Format("T{0}++", audioZone, zoneSource));
-                        break;
-
-                    case "TREBLEDOWN":
-                        SerialPortWrapper.SendSerialCommand(String.Format("T{0}--", audioZone, zoneSource));
-                        break;
-
-                    case "BASSUP":
-                        SerialPortWrapper.SendSerialCommand(String.Format("B{0}++", audioZone, zoneSource));
-                        break;
-
-                    case "BASSDOWN":
-                        SerialPortWrapper.SendSerialCommand(String.Format("B{0}--", audioZone, zoneSource));
-                        break;
-
-                    default:
-                        SerialPortWrapper.SendSerialCommand(audioActionName);
-                        break;
-                }
-
-                //return View("AudioMatrixControl");
-                // return new EmptyResult();
-                //return new JsonResult();
-                //return Json(null, JsonRequestBehavior.AllowGet);
-                return "OK";
-            }
-            catch (Exception ex)
-            {
-                return ex.Message;
-            }
         }
 
         public String LearnIRCode()
@@ -110,51 +32,77 @@ namespace _804ManchesterHomeControl.Controllers
             return IRWrapper.SendCode(IRCode);
         }
         
-        public ActionResult Activities()
+        public ActionResult AllDeviceCommands()
         {
-            ActivitiesViewModel avm = new ActivitiesViewModel();
-            avm.SelectedRoom = HomeActivities.Room.HomeTheater;
-            return View(avm);
+            MyDatabaseEntities dbe = new MyDatabaseEntities();
+
+            AllDeviceCommandsViewModel vm = new AllDeviceCommandsViewModel();
+
+            foreach (Device device in dbe.Devices)
+            {
+                foreach (DeviceCommand deviceCommand in device.DeviceCommands)
+                    vm.AddDeviceCommand(device.DeviceName, deviceCommand.Id, deviceCommand.Name);
+            }
+
+            return View("AllDeviceCommands", vm);
         }
 
-        public String MyExecuteAction(MyDeviceDatabase.Device device, String actionName)
+        public String ExecuteDeviceCommand(Int32 DeviceCommandId)
         {
-            try
+            MyDatabaseEntities dbe = new MyDatabaseEntities();
+
+            DeviceCommand deviceCommand = dbe.DeviceCommands.Single(dc => dc.Id == DeviceCommandId);
+
+            return ExecuteDeviceCommand(deviceCommand);
+        }
+
+        internal String ExecuteDeviceCommand(DeviceCommand deviceCommand)
+        {
+            string result = String.Empty;
+
+            if (!String.IsNullOrEmpty(deviceCommand.SerialCommand))
             {
-                MyDeviceDatabase.Action action = MyDeviceDatabase.GetAction(device, actionName);
-
-                String result = String.Empty;
-
                 try
                 {
-                    foreach (SerialPortWrapper.SerialCommand serCmd in action.SerialCommands)
-                    {
-                        result += SerialPortWrapper.SendSerialCommand(serCmd) + "<br/>";
-                    }
+                    SerialPortWrapper.SerialCommand serCmd = new SerialPortWrapper.SerialCommand(
+                        deviceCommand.Device.SerialPort.Value, deviceCommand.SerialCommand);
+                    serCmd.BaudRate = deviceCommand.Device.BaudRate.Value;
+                    serCmd.Hex = deviceCommand.Device.HexMode;
+                    result += SerialPortWrapper.SendSerialCommand(serCmd) + "<br/>";
                 }
-                catch (TimeoutException ex)
+                catch (Exception ex)
                 {
                     result += ex.Message + "<br/>";
                 }
+            }
 
-                if (action.URL != null)
+            if (!String.IsNullOrEmpty(deviceCommand.URL) )
+            {
+                try
                 {
-                    WebRequest myRequest = WebRequest.Create(action.URL);
+                    WebRequest myRequest = WebRequest.Create(deviceCommand.URL);
                     myRequest.Credentials = new NetworkCredential("admin", "McAdmin");
                     WebResponse response = myRequest.GetResponse();
                 }
-
-                if (action.IRCode != null)
+                catch (Exception ex)
                 {
-                    result += IRWrapper.SendCode(action.IRCode);
+                    result += ex.Message + "<br/>";
                 }
+            }
 
-                return result;
-            }
-            catch (Exception ex)
+            if(!String.IsNullOrEmpty(deviceCommand.IRCode))
             {
-                return ex.Message;
+                try
+                {
+                    result += IRWrapper.SendCode(deviceCommand.IRCode);
+                }
+                catch (Exception ex)
+                {
+                    result += ex.Message + "<br/>";
+                }
             }
+
+            return result;
         }
 
         public ActionResult ChooseRoom()
@@ -168,14 +116,41 @@ namespace _804ManchesterHomeControl.Controllers
                 vm.AddRoom(room.Id, room.RoomName);
             }
             
-            return View("ChooseRoomView", vm);
+            return View("ChooseRoom", vm);
         }
 
         public ActionResult ChooseActivity(Int32 RoomId)
         {
-            System.Diagnostics.Trace.WriteLine("ChooseRoom called");
+            MyDatabaseEntities dbe = new MyDatabaseEntities();
 
-            return View();
+            ChooseActivityViewModel vm = new ChooseActivityViewModel();
+
+            Room room = dbe.Rooms.Single(rm => rm.Id == RoomId);
+
+            vm.RoomName = room.RoomName;
+            foreach (RoomActivity roomActivitiy in room.RoomActivities)
+            {
+                vm.AddActivity(roomActivitiy.Id, roomActivitiy.Activity.Activity1);
+            }
+
+            return View("ChooseActivity", vm);
+        }
+
+        public String ExecuteRoomActivity(Int32 RoomActivityId)
+        {
+            MyDatabaseEntities dbe = new MyDatabaseEntities();
+
+            RoomActivity roomActivity = dbe.RoomActivities.Single(ra => ra.Id == RoomActivityId);
+
+            String result = String.Empty;
+            foreach (RequiredCommand rc in roomActivity.RequiredCommands.OrderBy( rc => rc.Sequence ))
+            {
+                result += String.Format("{0} {1}:", rc.DeviceCommand.Device.DeviceName, rc.DeviceCommand.Name);
+                result += ExecuteDeviceCommand(rc.DeviceCommand);
+                result += "</br>";
+            }
+
+            return result;
         }
     }
 }

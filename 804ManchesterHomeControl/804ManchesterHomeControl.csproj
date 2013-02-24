@@ -37,6 +37,17 @@
     <PlatformTarget>x86</PlatformTarget>
     <PublishDatabases>false</PublishDatabases>
     <DeployIisAppPath>Default Web Site/</DeployIisAppPath>
+    <PublishDatabaseSettings>
+      <Objects>
+        <ObjectGroup Name="MyDatabaseEntities-Deployment" Order="1" Enabled="True">
+          <Destination Path="" />
+          <Object Type="DbFullSql" Enabled="True">
+            <PreSource Path="Data Source=%28LocalDB%29\v11.0%3bAttachDbFilename=|DataDirectory|\MyDatabase.mdf%3bIntegrated Security=True%3bConnect Timeout=30%3bApplication Name=EntityFramework" ScriptSchema="True" ScriptData="True" CopyAllFullTextCatalogs="False" DriDefaults="True" />
+            <Source Path="obj\Debug\AutoScripts\MyDatabaseEntities-Deployment_SchemaAndData.sql" Transacted="True" />
+          </Object>
+        </ObjectGroup>
+      </Objects>
+    </PublishDatabaseSettings>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -140,8 +151,9 @@
     <Compile Include="Models\SerialPortWrapper.cs" />
     <Compile Include="Models\WMPWrapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\ActivitiesViewModel.cs" />
+    <Compile Include="ViewModels\AllDeviceCommandsViewModel.cs" />
     <Compile Include="ViewModels\ChooseRoomViewModel.cs" />
+    <Compile Include="ViewModels\ChooseActivityViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\MyDatabase.mdf" />
@@ -188,14 +200,22 @@
     <Content Include="Images\000102-blue-white-pearl-icon-media-music-cleft.png" />
     <Content Include="Images\000105-blue-white-pearl-icon-media-music-drum1.png" />
     <Content Include="Images\091285-blue-white-pearl-icon-signs-road-stop-sign-sc44.png" />
-    <Content Include="Images\Apple-TV-Logo-icon.png" />
-    <Content Include="Images\Denon_Logo.png" />
+    <Content Include="Images\Activities\Listen to AppleTV.png" />
+    <Content Include="Images\Activities\Listen to HTPC.png" />
+    <Content Include="Images\Activities\Watch Rogers Cable.png" />
+    <Content Include="Images\Activities\Watch AppleTV.png" />
+    <Content Include="Images\Rooms\Back Patio.png" />
+    <Content Include="Images\Rooms\Basement Bar.png" />
+    <Content Include="Images\Rooms\Basement Theatre.png" />
+    <Content Include="Images\Activities\Play PS3.png" />
     <Content Include="Images\House.png" />
-    <Content Include="Images\icon-gce-xm-online-radio.png" />
-    <Content Include="Images\BMN_CITY.png" />
-    <Content Include="Images\Stop-Normal-Red-icon.png" />
-    <Content Include="Images\the-matrix-glmatrix-500x400.png" />
-    <Content Include="Images\windows_media_center_logo.png" />
+    <Content Include="Images\Activities\Listen to XM.png" />
+    <Content Include="Images\Activities\BMN_CITY.png" />
+    <Content Include="Images\Rooms\Living Room.png" />
+    <Content Include="Images\Rooms\Master Bedroom.png" />
+    <Content Include="Images\Activities\Stop.png" />
+    <Content Include="Images\Activities\the-matrix-glmatrix-500x400.png" />
+    <Content Include="Images\Activities\Watch HTPC.png" />
     <EntityDeploy Include="Models\MyDatabaseModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>MyDatabaseModel.Designer.cs</LastGenOutput>
@@ -255,11 +275,10 @@
     <Content Include="Views\Web.config" />
     <Content Include="packages.config" />
     <None Include="readme.txt" />
-    <Content Include="Views\Home\AudioMatrixControl.cshtml" />
-    <Content Include="Views\Home\Insteon.cshtml" />
     <Content Include="Views\Home\IR.cshtml" />
-    <Content Include="Views\Home\Activities.cshtml" />
-    <Content Include="Views\Home\ChooseRoomView.cshtml" />
+    <Content Include="Views\Home\ChooseRoom.cshtml" />
+    <Content Include="Views\Home\AllDeviceCommands.cshtml" />
+    <Content Include="Views\Home\ChooseActivity.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -267,6 +286,7 @@
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

@@ -1,0 +1,29 @@
+﻿@using _804ManchesterHomeControl.Helpers;
+@model _804ManchesterHomeControl.ViewModels.ChooseRoomViewModel
+@{
+    ViewBag.Title = "ChooseRoom";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>What Room are you in?</h2>
+
+
+
+@{  int idx = 0; }
+    <table>
+        <tr>
+        @foreach (KeyValuePair<Int32, String> item in Model.Rooms)
+        {
+            <td>
+                @Html.ImageActionLink(Url.Content("~/Images/Rooms/" + item.Value + ".png"), item.Value, "ChooseActivity", new { RoomId = item.Key }, new { width = 96 })
+                @Html.ActionLink(item.Value, "ChooseActivity", new { RoomId = item.Key })
+            </td>
+
+            if( ++idx%3==0 )
+            {
+                @:</tr><tr>
+            }
+        }
+        </tr>
+    </table>
+

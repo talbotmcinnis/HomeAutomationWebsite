@@ -1,17 +1,12 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
-@*<h2>@ViewBag.Message</h2>*@
-<h2>Welcome to 804 Manchester!</h2>
-<img src="../../Images/House.png" alt="House Picture" width="100px" />
+<img src="../../Images/House.png" alt="House Picture" width="125px" />
 @*<p>
     To learn more about ASP.NET MVC visit <a href="http://asp.net/mvc" title="ASP.NET MVC Website">http://asp.net/mvc</a>.
 </p>*@
 <br />
-@Html.ActionLink("Lighting/Thermostat", "Insteon", "Home")
-<br />
-@Html.ActionLink("Audio Control", "AudioMatrixControl", "Home")
-<br />
-@Html.ActionLink("IR Control", "IR", "Home")
-<br />
-@Html.ActionLink("Activities", "Activities", "Home")
+<h2>
+@Html.ActionLink("What to control something?", "ChooseRoom", "Home" )
+</h2>
+

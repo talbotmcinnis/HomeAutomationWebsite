@@ -68,7 +68,9 @@ namespace _804ManchesterHomeControl.Models
                         serialPort.Write(buffer, 0, buffer.Length);
                     }
                     else
-                        serialPort.WriteLine(cmd.Command);
+                        serialPort.WriteLine(cmd.Command + "\r");   // Add a carriage return because most devices want one
+
+                    
 
                     string actualResponse = String.Empty;
                     foreach (char c in cmd.ExpectedResponse)

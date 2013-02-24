@@ -38,7 +38,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" Nullable="false" />
-          <Property Name="Activity" Type="nchar" Nullable="false" MaxLength="50" />
+          <Property Name="Activity" Type="nvarchar" Nullable="false" MaxLength="50" />
         </EntityType>
         <EntityType Name="DeviceCommands">
           <Key>
@@ -46,10 +46,10 @@
           </Key>
           <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="DeviceId" Type="int" Nullable="false" />
-          <Property Name="Name" Type="nchar" Nullable="false" MaxLength="50" />
-          <Property Name="IRCode" Type="nchar" MaxLength="50" />
-          <Property Name="URL" Type="nchar" MaxLength="255" />
-          <Property Name="SerialCommand" Type="nchar" MaxLength="50" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+          <Property Name="IRCode" Type="nvarchar(max)" />
+          <Property Name="URL" Type="nvarchar(max)" />
+          <Property Name="SerialCommand" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Devices">
           <Key>
@@ -59,6 +59,7 @@
           <Property Name="DeviceName" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="SerialPort" Type="int" />
           <Property Name="BaudRate" Type="int" />
+          <Property Name="HexMode" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="RequiredCommands">
           <Key>
@@ -185,13 +186,14 @@
           <Property Type="Int32" Name="BaudRate" />
           <Property Type="Int32" Name="Id" Nullable="false" />
           <NavigationProperty Name="DeviceCommands" Relationship="MyDatabaseModel.FK_DeviceCommands_Devices" FromRole="Device" ToRole="DeviceCommand" />
+          <Property Type="Boolean" Name="HexMode" Nullable="false" />
         </EntityType>
         <EntityType Name="Activity">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Type="Int32" Name="Id" Nullable="false" />
-          <Property Type="String" Name="Activity1" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Type="String" Name="Activity1" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="RoomActivities" Relationship="MyDatabaseModel.FK_RoomActivities_Activities" FromRole="Activity" ToRole="RoomActivity" />
         </EntityType>
         <EntityType Name="DeviceCommand">
@@ -200,10 +202,10 @@
           </Key>
           <Property Type="Int32" Name="Id" Nullable="false" />
           <Property Type="Int32" Name="DeviceId" Nullable="false" />
-          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
-          <Property Type="String" Name="IRCode" MaxLength="50" FixedLength="true" Unicode="true" />
-          <Property Type="String" Name="URL" MaxLength="255" FixedLength="true" Unicode="true" />
-          <Property Type="String" Name="SerialCommand" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="IRCode" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="URL" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="SerialCommand" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Device" Relationship="MyDatabaseModel.FK_DeviceCommands_Devices" FromRole="DeviceCommand" ToRole="Device" />
           <NavigationProperty Name="RequiredCommands" Relationship="MyDatabaseModel.FK_RequiredCommands_DeviceCommands" FromRole="DeviceCommand" ToRole="RequiredCommand" />
         </EntityType>
@@ -306,6 +308,7 @@
           <EntitySetMapping Name="Devices">
             <EntityTypeMapping TypeName="MyDatabaseModel.Device">
               <MappingFragment StoreEntitySet="Devices">
+                <ScalarProperty Name="HexMode" ColumnName="HexMode" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="BaudRate" ColumnName="BaudRate" />
                 <ScalarProperty Name="SerialPort" ColumnName="SerialPort" />
