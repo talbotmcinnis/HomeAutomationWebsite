@@ -39,9 +39,9 @@
     <DeployIisAppPath>Default Web Site/</DeployIisAppPath>
     <PublishDatabaseSettings>
       <Objects>
-        <ObjectGroup Name="MyDatabaseEntities-Deployment" Order="1" Enabled="True">
+        <ObjectGroup Name="MyDatabaseEntities-Deployment" Order="1" Enabled="False">
           <Destination Path="" />
-          <Object Type="DbFullSql" Enabled="True">
+          <Object Type="DbFullSql" Enabled="False">
             <PreSource Path="Data Source=%28LocalDB%29\v11.0%3bAttachDbFilename=|DataDirectory|\MyDatabase.mdf%3bIntegrated Security=True%3bConnect Timeout=30%3bApplication Name=EntityFramework" ScriptSchema="True" ScriptData="True" CopyAllFullTextCatalogs="False" DriDefaults="True" />
             <Source Path="obj\Debug\AutoScripts\MyDatabaseEntities-Deployment_SchemaAndData.sql" Transacted="True" />
           </Object>
@@ -112,42 +112,22 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\ImageActionLink.cs" />
-    <Compile Include="Models\Activity.cs">
-      <DependentUpon>MyDatabaseModel.tt</DependentUpon>
+    <Compile Include="Models\AutomationModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AutomationModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Device.cs">
-      <DependentUpon>MyDatabaseModel.tt</DependentUpon>
+    <Compile Include="Models\AutomationModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AutomationModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\DeviceCommand.cs">
-      <DependentUpon>MyDatabaseModel.tt</DependentUpon>
+    <Compile Include="Models\AutomationModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AutomationModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\HomeActivities.cs" />
     <Compile Include="Models\IRWrapper.cs" />
-    <Compile Include="Models\MyDatabaseModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MyDatabaseModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\MyDatabaseModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MyDatabaseModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\MyDatabaseModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MyDatabaseModel.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Models\MyDeviceDatabase.cs" />
-    <Compile Include="Models\RequiredCommand.cs">
-      <DependentUpon>MyDatabaseModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\Room.cs">
-      <DependentUpon>MyDatabaseModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\RoomActivity.cs">
-      <DependentUpon>MyDatabaseModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\SerialPortWrapper.cs" />
     <Compile Include="Models\WMPWrapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -156,10 +136,6 @@
     <Compile Include="ViewModels\ChooseActivityViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\MyDatabase.mdf" />
-    <Content Include="App_Data\MyDatabase_log.ldf">
-      <DependentUpon>MyDatabase.mdf</DependentUpon>
-    </Content>
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -216,22 +192,22 @@
     <Content Include="Images\Activities\Stop.png" />
     <Content Include="Images\Activities\the-matrix-glmatrix-500x400.png" />
     <Content Include="Images\Activities\Watch HTPC.png" />
-    <EntityDeploy Include="Models\MyDatabaseModel.edmx">
+    <EntityDeploy Include="Models\AutomationModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>MyDatabaseModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>AutomationModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\MyDatabaseModel.Context.tt">
+    <Content Include="Models\AutomationModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>MyDatabaseModel.edmx</DependentUpon>
-      <LastGenOutput>MyDatabaseModel.Context.cs</LastGenOutput>
+      <DependentUpon>AutomationModel.edmx</DependentUpon>
+      <LastGenOutput>AutomationModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\MyDatabaseModel.edmx.diagram">
-      <DependentUpon>MyDatabaseModel.edmx</DependentUpon>
+    <Content Include="Models\AutomationModel.edmx.diagram">
+      <DependentUpon>AutomationModel.edmx</DependentUpon>
     </Content>
-    <Content Include="Models\MyDatabaseModel.tt">
+    <Content Include="Models\AutomationModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>MyDatabaseModel.edmx</DependentUpon>
-      <LastGenOutput>MyDatabaseModel.cs</LastGenOutput>
+      <DependentUpon>AutomationModel.edmx</DependentUpon>
+      <LastGenOutput>AutomationModel.cs</LastGenOutput>
     </Content>
     <None Include="Properties\PublishProfiles\HTPC Package.pubxml" />
     <None Include="Properties\PublishProfiles\Profile1.pubxml" />
@@ -286,7 +262,9 @@
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

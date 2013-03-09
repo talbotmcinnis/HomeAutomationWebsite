@@ -4,31 +4,31 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="MyDatabaseModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
-        <EntityContainer Name="MyDatabaseModelStoreContainer">
-          <EntitySet Name="Activities" EntityType="MyDatabaseModel.Store.Activities" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="DeviceCommands" EntityType="MyDatabaseModel.Store.DeviceCommands" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Devices" EntityType="MyDatabaseModel.Store.Devices" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="RequiredCommands" EntityType="MyDatabaseModel.Store.RequiredCommands" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="RoomActivities" EntityType="MyDatabaseModel.Store.RoomActivities" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Rooms" EntityType="MyDatabaseModel.Store.Rooms" store:Type="Tables" Schema="dbo" />
-          <AssociationSet Name="FK_DeviceCommands_Devices" Association="MyDatabaseModel.Store.FK_DeviceCommands_Devices">
+    <Schema Namespace="AutomationModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="AutomationModelStoreContainer">
+          <EntitySet Name="Activities" EntityType="AutomationModel.Store.Activities" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="DeviceCommands" EntityType="AutomationModel.Store.DeviceCommands" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Devices" EntityType="AutomationModel.Store.Devices" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="RequiredCommands" EntityType="AutomationModel.Store.RequiredCommands" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="RoomActivities" EntityType="AutomationModel.Store.RoomActivities" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Rooms" EntityType="AutomationModel.Store.Rooms" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_DeviceCommands_Devices" Association="AutomationModel.Store.FK_DeviceCommands_Devices">
             <End Role="Devices" EntitySet="Devices" />
             <End Role="DeviceCommands" EntitySet="DeviceCommands" />
           </AssociationSet>
-          <AssociationSet Name="FK_RequiredCommands_DeviceCommands" Association="MyDatabaseModel.Store.FK_RequiredCommands_DeviceCommands">
+          <AssociationSet Name="FK_RequiredCommands_DeviceCommands" Association="AutomationModel.Store.FK_RequiredCommands_DeviceCommands">
             <End Role="DeviceCommands" EntitySet="DeviceCommands" />
             <End Role="RequiredCommands" EntitySet="RequiredCommands" />
           </AssociationSet>
-          <AssociationSet Name="FK_RequiredCommands_RoomActivities" Association="MyDatabaseModel.Store.FK_RequiredCommands_RoomActivities">
+          <AssociationSet Name="FK_RequiredCommands_RoomActivities" Association="AutomationModel.Store.FK_RequiredCommands_RoomActivities">
             <End Role="RoomActivities" EntitySet="RoomActivities" />
             <End Role="RequiredCommands" EntitySet="RequiredCommands" />
           </AssociationSet>
-          <AssociationSet Name="FK_RoomActivities_Activities" Association="MyDatabaseModel.Store.FK_RoomActivities_Activities">
+          <AssociationSet Name="FK_RoomActivities_Activities" Association="AutomationModel.Store.FK_RoomActivities_Activities">
             <End Role="Activities" EntitySet="Activities" />
             <End Role="RoomActivities" EntitySet="RoomActivities" />
           </AssociationSet>
-          <AssociationSet Name="FK_RoomActivities_Rooms" Association="MyDatabaseModel.Store.FK_RoomActivities_Rooms">
+          <AssociationSet Name="FK_RoomActivities_Rooms" Association="AutomationModel.Store.FK_RoomActivities_Rooms">
             <End Role="Rooms" EntitySet="Rooms" />
             <End Role="RoomActivities" EntitySet="RoomActivities" />
           </AssociationSet>
@@ -86,8 +86,8 @@
           <Property Name="RoomName" Type="nvarchar" Nullable="false" MaxLength="50" />
         </EntityType>
         <Association Name="FK_DeviceCommands_Devices">
-          <End Role="Devices" Type="MyDatabaseModel.Store.Devices" Multiplicity="1" />
-          <End Role="DeviceCommands" Type="MyDatabaseModel.Store.DeviceCommands" Multiplicity="*" />
+          <End Role="Devices" Type="AutomationModel.Store.Devices" Multiplicity="1" />
+          <End Role="DeviceCommands" Type="AutomationModel.Store.DeviceCommands" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Devices">
               <PropertyRef Name="Id" />
@@ -98,8 +98,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_RequiredCommands_DeviceCommands">
-          <End Role="DeviceCommands" Type="MyDatabaseModel.Store.DeviceCommands" Multiplicity="1" />
-          <End Role="RequiredCommands" Type="MyDatabaseModel.Store.RequiredCommands" Multiplicity="*" />
+          <End Role="DeviceCommands" Type="AutomationModel.Store.DeviceCommands" Multiplicity="1" />
+          <End Role="RequiredCommands" Type="AutomationModel.Store.RequiredCommands" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="DeviceCommands">
               <PropertyRef Name="Id" />
@@ -110,8 +110,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_RequiredCommands_RoomActivities">
-          <End Role="RoomActivities" Type="MyDatabaseModel.Store.RoomActivities" Multiplicity="1" />
-          <End Role="RequiredCommands" Type="MyDatabaseModel.Store.RequiredCommands" Multiplicity="*" />
+          <End Role="RoomActivities" Type="AutomationModel.Store.RoomActivities" Multiplicity="1" />
+          <End Role="RequiredCommands" Type="AutomationModel.Store.RequiredCommands" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="RoomActivities">
               <PropertyRef Name="Id" />
@@ -122,8 +122,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_RoomActivities_Activities">
-          <End Role="Activities" Type="MyDatabaseModel.Store.Activities" Multiplicity="1" />
-          <End Role="RoomActivities" Type="MyDatabaseModel.Store.RoomActivities" Multiplicity="*" />
+          <End Role="Activities" Type="AutomationModel.Store.Activities" Multiplicity="1" />
+          <End Role="RoomActivities" Type="AutomationModel.Store.RoomActivities" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Activities">
               <PropertyRef Name="Id" />
@@ -134,8 +134,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_RoomActivities_Rooms">
-          <End Role="Rooms" Type="MyDatabaseModel.Store.Rooms" Multiplicity="1" />
-          <End Role="RoomActivities" Type="MyDatabaseModel.Store.RoomActivities" Multiplicity="*" />
+          <End Role="Rooms" Type="AutomationModel.Store.Rooms" Multiplicity="1" />
+          <End Role="RoomActivities" Type="AutomationModel.Store.RoomActivities" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Rooms">
               <PropertyRef Name="Id" />
@@ -148,53 +148,42 @@
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="MyDatabaseModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
-        <EntityContainer Name="MyDatabaseEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Devices" EntityType="MyDatabaseModel.Device" />
-          <EntitySet Name="Activities" EntityType="MyDatabaseModel.Activity" />
-          <EntitySet Name="DeviceCommands" EntityType="MyDatabaseModel.DeviceCommand" />
-          <EntitySet Name="RequiredCommands" EntityType="MyDatabaseModel.RequiredCommand" />
-          <EntitySet Name="RoomActivities" EntityType="MyDatabaseModel.RoomActivity" />
-          <EntitySet Name="Rooms" EntityType="MyDatabaseModel.Room" />
-          <AssociationSet Name="FK_RoomActivities_Activities" Association="MyDatabaseModel.FK_RoomActivities_Activities">
+      <Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="AutomationModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
+        <EntityContainer Name="AutomationModelContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Activities" EntityType="AutomationModel.Activity" />
+          <EntitySet Name="DeviceCommands" EntityType="AutomationModel.DeviceCommand" />
+          <EntitySet Name="Devices" EntityType="AutomationModel.Device" />
+          <EntitySet Name="RequiredCommands" EntityType="AutomationModel.RequiredCommand" />
+          <EntitySet Name="RoomActivities" EntityType="AutomationModel.RoomActivity" />
+          <EntitySet Name="Rooms" EntityType="AutomationModel.Room" />
+          <AssociationSet Name="FK_RoomActivities_Activities" Association="AutomationModel.FK_RoomActivities_Activities">
             <End Role="Activity" EntitySet="Activities" />
             <End Role="RoomActivity" EntitySet="RoomActivities" />
           </AssociationSet>
-          <AssociationSet Name="FK_DeviceCommands_Devices" Association="MyDatabaseModel.FK_DeviceCommands_Devices">
+          <AssociationSet Name="FK_DeviceCommands_Devices" Association="AutomationModel.FK_DeviceCommands_Devices">
             <End Role="Device" EntitySet="Devices" />
             <End Role="DeviceCommand" EntitySet="DeviceCommands" />
           </AssociationSet>
-          <AssociationSet Name="FK_RequiredCommands_DeviceCommands" Association="MyDatabaseModel.FK_RequiredCommands_DeviceCommands">
+          <AssociationSet Name="FK_RequiredCommands_DeviceCommands" Association="AutomationModel.FK_RequiredCommands_DeviceCommands">
             <End Role="DeviceCommand" EntitySet="DeviceCommands" />
             <End Role="RequiredCommand" EntitySet="RequiredCommands" />
           </AssociationSet>
-          <AssociationSet Name="FK_RequiredCommands_RoomActivities" Association="MyDatabaseModel.FK_RequiredCommands_RoomActivities">
+          <AssociationSet Name="FK_RequiredCommands_RoomActivities" Association="AutomationModel.FK_RequiredCommands_RoomActivities">
             <End Role="RoomActivity" EntitySet="RoomActivities" />
             <End Role="RequiredCommand" EntitySet="RequiredCommands" />
           </AssociationSet>
-          <AssociationSet Name="FK_RoomActivities_Rooms" Association="MyDatabaseModel.FK_RoomActivities_Rooms">
+          <AssociationSet Name="FK_RoomActivities_Rooms" Association="AutomationModel.FK_RoomActivities_Rooms">
             <End Role="Room" EntitySet="Rooms" />
             <End Role="RoomActivity" EntitySet="RoomActivities" />
           </AssociationSet>
         </EntityContainer>
-        <EntityType Name="Device">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="DeviceName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Type="Int32" Name="SerialPort" />
-          <Property Type="Int32" Name="BaudRate" />
-          <Property Type="Int32" Name="Id" Nullable="false" />
-          <NavigationProperty Name="DeviceCommands" Relationship="MyDatabaseModel.FK_DeviceCommands_Devices" FromRole="Device" ToRole="DeviceCommand" />
-          <Property Type="Boolean" Name="HexMode" Nullable="false" />
-        </EntityType>
         <EntityType Name="Activity">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Type="Int32" Name="Id" Nullable="false" />
           <Property Type="String" Name="Activity1" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="RoomActivities" Relationship="MyDatabaseModel.FK_RoomActivities_Activities" FromRole="Activity" ToRole="RoomActivity" />
+          <NavigationProperty Name="RoomActivities" Relationship="AutomationModel.FK_RoomActivities_Activities" FromRole="Activity" ToRole="RoomActivity" />
         </EntityType>
         <EntityType Name="DeviceCommand">
           <Key>
@@ -206,8 +195,19 @@
           <Property Type="String" Name="IRCode" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="URL" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="SerialCommand" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Device" Relationship="MyDatabaseModel.FK_DeviceCommands_Devices" FromRole="DeviceCommand" ToRole="Device" />
-          <NavigationProperty Name="RequiredCommands" Relationship="MyDatabaseModel.FK_RequiredCommands_DeviceCommands" FromRole="DeviceCommand" ToRole="RequiredCommand" />
+          <NavigationProperty Name="Device" Relationship="AutomationModel.FK_DeviceCommands_Devices" FromRole="DeviceCommand" ToRole="Device" />
+          <NavigationProperty Name="RequiredCommands" Relationship="AutomationModel.FK_RequiredCommands_DeviceCommands" FromRole="DeviceCommand" ToRole="RequiredCommand" />
+        </EntityType>
+        <EntityType Name="Device">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="String" Name="DeviceName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="SerialPort" />
+          <Property Type="Int32" Name="BaudRate" />
+          <Property Type="Boolean" Name="HexMode" Nullable="false" />
+          <NavigationProperty Name="DeviceCommands" Relationship="AutomationModel.FK_DeviceCommands_Devices" FromRole="Device" ToRole="DeviceCommand" />
         </EntityType>
         <EntityType Name="RequiredCommand">
           <Key>
@@ -217,8 +217,8 @@
           <Property Type="Int32" Name="RoomActivityId" Nullable="false" />
           <Property Type="Int32" Name="DeviceCommandId" Nullable="false" />
           <Property Type="Int32" Name="Sequence" Nullable="false" />
-          <NavigationProperty Name="DeviceCommand" Relationship="MyDatabaseModel.FK_RequiredCommands_DeviceCommands" FromRole="RequiredCommand" ToRole="DeviceCommand" />
-          <NavigationProperty Name="RoomActivity" Relationship="MyDatabaseModel.FK_RequiredCommands_RoomActivities" FromRole="RequiredCommand" ToRole="RoomActivity" />
+          <NavigationProperty Name="DeviceCommand" Relationship="AutomationModel.FK_RequiredCommands_DeviceCommands" FromRole="RequiredCommand" ToRole="DeviceCommand" />
+          <NavigationProperty Name="RoomActivity" Relationship="AutomationModel.FK_RequiredCommands_RoomActivities" FromRole="RequiredCommand" ToRole="RoomActivity" />
         </EntityType>
         <EntityType Name="RoomActivity">
           <Key>
@@ -227,9 +227,9 @@
           <Property Type="Int32" Name="Id" Nullable="false" />
           <Property Type="Int32" Name="RoomId" Nullable="false" />
           <Property Type="Int32" Name="ActivityId" Nullable="false" />
-          <NavigationProperty Name="Activity" Relationship="MyDatabaseModel.FK_RoomActivities_Activities" FromRole="RoomActivity" ToRole="Activity" />
-          <NavigationProperty Name="RequiredCommands" Relationship="MyDatabaseModel.FK_RequiredCommands_RoomActivities" FromRole="RoomActivity" ToRole="RequiredCommand" />
-          <NavigationProperty Name="Room" Relationship="MyDatabaseModel.FK_RoomActivities_Rooms" FromRole="RoomActivity" ToRole="Room" />
+          <NavigationProperty Name="Activity" Relationship="AutomationModel.FK_RoomActivities_Activities" FromRole="RoomActivity" ToRole="Activity" />
+          <NavigationProperty Name="RequiredCommands" Relationship="AutomationModel.FK_RequiredCommands_RoomActivities" FromRole="RoomActivity" ToRole="RequiredCommand" />
+          <NavigationProperty Name="Room" Relationship="AutomationModel.FK_RoomActivities_Rooms" FromRole="RoomActivity" ToRole="Room" />
         </EntityType>
         <EntityType Name="Room">
           <Key>
@@ -237,11 +237,11 @@
           </Key>
           <Property Type="Int32" Name="Id" Nullable="false" />
           <Property Type="String" Name="RoomName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="RoomActivities" Relationship="MyDatabaseModel.FK_RoomActivities_Rooms" FromRole="Room" ToRole="RoomActivity" />
+          <NavigationProperty Name="RoomActivities" Relationship="AutomationModel.FK_RoomActivities_Rooms" FromRole="Room" ToRole="RoomActivity" />
         </EntityType>
         <Association Name="FK_RoomActivities_Activities">
-          <End Type="MyDatabaseModel.Activity" Role="Activity" Multiplicity="1" />
-          <End Type="MyDatabaseModel.RoomActivity" Role="RoomActivity" Multiplicity="*" />
+          <End Type="AutomationModel.Activity" Role="Activity" Multiplicity="1" />
+          <End Type="AutomationModel.RoomActivity" Role="RoomActivity" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Activity">
               <PropertyRef Name="Id" />
@@ -252,8 +252,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_DeviceCommands_Devices">
-          <End Type="MyDatabaseModel.Device" Role="Device" Multiplicity="1" />
-          <End Type="MyDatabaseModel.DeviceCommand" Role="DeviceCommand" Multiplicity="*" />
+          <End Type="AutomationModel.Device" Role="Device" Multiplicity="1" />
+          <End Type="AutomationModel.DeviceCommand" Role="DeviceCommand" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Device">
               <PropertyRef Name="Id" />
@@ -264,8 +264,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_RequiredCommands_DeviceCommands">
-          <End Type="MyDatabaseModel.DeviceCommand" Role="DeviceCommand" Multiplicity="1" />
-          <End Type="MyDatabaseModel.RequiredCommand" Role="RequiredCommand" Multiplicity="*" />
+          <End Type="AutomationModel.DeviceCommand" Role="DeviceCommand" Multiplicity="1" />
+          <End Type="AutomationModel.RequiredCommand" Role="RequiredCommand" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="DeviceCommand">
               <PropertyRef Name="Id" />
@@ -276,8 +276,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_RequiredCommands_RoomActivities">
-          <End Type="MyDatabaseModel.RoomActivity" Role="RoomActivity" Multiplicity="1" />
-          <End Type="MyDatabaseModel.RequiredCommand" Role="RequiredCommand" Multiplicity="*" />
+          <End Type="AutomationModel.RoomActivity" Role="RoomActivity" Multiplicity="1" />
+          <End Type="AutomationModel.RequiredCommand" Role="RequiredCommand" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="RoomActivity">
               <PropertyRef Name="Id" />
@@ -288,8 +288,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_RoomActivities_Rooms">
-          <End Type="MyDatabaseModel.Room" Role="Room" Multiplicity="1" />
-          <End Type="MyDatabaseModel.RoomActivity" Role="RoomActivity" Multiplicity="*" />
+          <End Type="AutomationModel.Room" Role="Room" Multiplicity="1" />
+          <End Type="AutomationModel.RoomActivity" Role="RoomActivity" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Room">
               <PropertyRef Name="Id" />
@@ -303,21 +303,12 @@
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="MyDatabaseModelStoreContainer" CdmEntityContainer="MyDatabaseEntities">
-          <EntitySetMapping Name="Devices">
-            <EntityTypeMapping TypeName="MyDatabaseModel.Device">
-              <MappingFragment StoreEntitySet="Devices">
-                <ScalarProperty Name="HexMode" ColumnName="HexMode" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="BaudRate" ColumnName="BaudRate" />
-                <ScalarProperty Name="SerialPort" ColumnName="SerialPort" />
-                <ScalarProperty Name="DeviceName" ColumnName="DeviceName" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
+      <Mapping xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs" Space="C-S">
+        <Alias Key="Model" Value="AutomationModel" />
+        <Alias Key="Target" Value="AutomationModel.Store" />
+        <EntityContainerMapping CdmEntityContainer="AutomationModelContainer" StorageEntityContainer="AutomationModelStoreContainer">
           <EntitySetMapping Name="Activities">
-            <EntityTypeMapping TypeName="MyDatabaseModel.Activity">
+            <EntityTypeMapping TypeName="AutomationModel.Activity">
               <MappingFragment StoreEntitySet="Activities">
                 <ScalarProperty Name="Activity1" ColumnName="Activity" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
@@ -325,7 +316,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="DeviceCommands">
-            <EntityTypeMapping TypeName="MyDatabaseModel.DeviceCommand">
+            <EntityTypeMapping TypeName="AutomationModel.DeviceCommand">
               <MappingFragment StoreEntitySet="DeviceCommands">
                 <ScalarProperty Name="SerialCommand" ColumnName="SerialCommand" />
                 <ScalarProperty Name="URL" ColumnName="URL" />
@@ -336,8 +327,19 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Devices">
+            <EntityTypeMapping TypeName="AutomationModel.Device">
+              <MappingFragment StoreEntitySet="Devices">
+                <ScalarProperty Name="HexMode" ColumnName="HexMode" />
+                <ScalarProperty Name="BaudRate" ColumnName="BaudRate" />
+                <ScalarProperty Name="SerialPort" ColumnName="SerialPort" />
+                <ScalarProperty Name="DeviceName" ColumnName="DeviceName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="RequiredCommands">
-            <EntityTypeMapping TypeName="MyDatabaseModel.RequiredCommand">
+            <EntityTypeMapping TypeName="AutomationModel.RequiredCommand">
               <MappingFragment StoreEntitySet="RequiredCommands">
                 <ScalarProperty Name="Sequence" ColumnName="Sequence" />
                 <ScalarProperty Name="DeviceCommandId" ColumnName="DeviceCommandId" />
@@ -347,7 +349,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="RoomActivities">
-            <EntityTypeMapping TypeName="MyDatabaseModel.RoomActivity">
+            <EntityTypeMapping TypeName="AutomationModel.RoomActivity">
               <MappingFragment StoreEntitySet="RoomActivities">
                 <ScalarProperty Name="ActivityId" ColumnName="ActivityId" />
                 <ScalarProperty Name="RoomId" ColumnName="RoomId" />
@@ -356,7 +358,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Rooms">
-            <EntityTypeMapping TypeName="MyDatabaseModel.Room">
+            <EntityTypeMapping TypeName="AutomationModel.Room">
               <MappingFragment StoreEntitySet="Rooms">
                 <ScalarProperty Name="RoomName" ColumnName="RoomName" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
@@ -378,8 +380,8 @@
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Default" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
-        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->

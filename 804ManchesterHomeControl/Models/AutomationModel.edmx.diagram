@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ab176ca995234d52b61982a1961a0270" Name="Diagram1" >
+        <EntityTypeShape EntityType="AutomationModel.Activity" Width="1.5" PointX="1.8675085966789669" PointY="18.434570902229552" />
+        <EntityTypeShape EntityType="AutomationModel.DeviceCommand" Width="1.5" PointX="5.773176192200359" PointY="24.223255630686534" />
+        <EntityTypeShape EntityType="AutomationModel.Device" Width="1.5" PointX="1.4968258466091127" PointY="0.69305624100056307" />
+        <EntityTypeShape EntityType="AutomationModel.RequiredCommand" Width="1.5" PointX="5.3959010194036647" PointY="4.5405039510412628" />
+        <EntityTypeShape EntityType="AutomationModel.RoomActivity" Width="1.5" PointX="8.2381995805717061" PointY="3.3407045022308384" />
+        <EntityTypeShape EntityType="AutomationModel.Room" Width="1.5" PointX="11.226072292414528" PointY="1.778662220471847" />
+        <AssociationConnector Association="AutomationModel.FK_RoomActivities_Activities" />
+        <AssociationConnector Association="AutomationModel.FK_DeviceCommands_Devices" />
+        <AssociationConnector Association="AutomationModel.FK_RequiredCommands_DeviceCommands" />
+        <AssociationConnector Association="AutomationModel.FK_RequiredCommands_RoomActivities" />
+        <AssociationConnector Association="AutomationModel.FK_RoomActivities_Rooms" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -34,7 +34,8 @@ namespace _804ManchesterHomeControl.Controllers
         
         public ActionResult AllDeviceCommands()
         {
-            MyDatabaseEntities dbe = new MyDatabaseEntities();
+            AutomationModelContainer dbe = new AutomationModelContainer();
+            //MyDatabaseEntities dbe = new MyDatabaseEntities();
 
             AllDeviceCommandsViewModel vm = new AllDeviceCommandsViewModel();
 
@@ -49,8 +50,8 @@ namespace _804ManchesterHomeControl.Controllers
 
         public String ExecuteDeviceCommand(Int32 DeviceCommandId)
         {
-            MyDatabaseEntities dbe = new MyDatabaseEntities();
-
+            AutomationModelContainer dbe = new AutomationModelContainer();
+            
             DeviceCommand deviceCommand = dbe.DeviceCommands.Single(dc => dc.Id == DeviceCommandId);
 
             return ExecuteDeviceCommand(deviceCommand);
@@ -58,6 +59,7 @@ namespace _804ManchesterHomeControl.Controllers
 
         internal String ExecuteDeviceCommand(DeviceCommand deviceCommand)
         {
+            
             string result = String.Empty;
 
             if (!String.IsNullOrEmpty(deviceCommand.SerialCommand))
@@ -107,8 +109,8 @@ namespace _804ManchesterHomeControl.Controllers
 
         public ActionResult ChooseRoom()
         {
-            MyDatabaseEntities dbe = new MyDatabaseEntities();
-
+            AutomationModelContainer dbe = new AutomationModelContainer();
+            
             ChooseRoomViewModel vm = new ChooseRoomViewModel();
 
             foreach( Models.Room room in dbe.Rooms )
@@ -121,8 +123,8 @@ namespace _804ManchesterHomeControl.Controllers
 
         public ActionResult ChooseActivity(Int32 RoomId)
         {
-            MyDatabaseEntities dbe = new MyDatabaseEntities();
-
+            AutomationModelContainer dbe = new AutomationModelContainer();
+            
             ChooseActivityViewModel vm = new ChooseActivityViewModel();
 
             Room room = dbe.Rooms.Single(rm => rm.Id == RoomId);
@@ -138,8 +140,8 @@ namespace _804ManchesterHomeControl.Controllers
 
         public String ExecuteRoomActivity(Int32 RoomActivityId)
         {
-            MyDatabaseEntities dbe = new MyDatabaseEntities();
-
+            AutomationModelContainer dbe = new AutomationModelContainer();
+            
             RoomActivity roomActivity = dbe.RoomActivities.Single(ra => ra.Id == RoomActivityId);
 
             String result = String.Empty;
