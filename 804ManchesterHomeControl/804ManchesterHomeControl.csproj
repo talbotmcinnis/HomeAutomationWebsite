@@ -177,6 +177,7 @@
     <Content Include="Images\000105-blue-white-pearl-icon-media-music-drum1.png" />
     <Content Include="Images\091285-blue-white-pearl-icon-signs-road-stop-sign-sc44.png" />
     <Content Include="Images\Activities\Listen to AppleTV.png" />
+    <Content Include="Images\Activities\Listen to HTPC Main.png" />
     <Content Include="Images\Activities\Listen to HTPC.png" />
     <Content Include="Images\Activities\Watch Rogers Cable.png" />
     <Content Include="Images\Activities\Watch AppleTV.png" />
@@ -187,6 +188,7 @@
     <Content Include="Images\House.png" />
     <Content Include="Images\Activities\Listen to XM.png" />
     <Content Include="Images\Activities\BMN_CITY.png" />
+    <Content Include="Images\Rooms\Kitchen.png" />
     <Content Include="Images\Rooms\Living Room.png" />
     <Content Include="Images\Rooms\Master Bedroom.png" />
     <Content Include="Images\Activities\Stop.png" />

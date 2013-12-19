@@ -16,7 +16,7 @@
         {
             <td>
                 @Html.ImageActionLink(Url.Content("~/Images/Rooms/" + item.Value + ".png"), item.Value, "ChooseActivity", new { RoomId = item.Key }, new { width = 96 })
-                @Html.ActionLink(item.Value, "ChooseActivity", new { RoomId = item.Key })
+                <br />@Html.ActionLink(item.Value, "ChooseActivity", new { RoomId = item.Key })
             </td>
 
             if( ++idx%3==0 )
