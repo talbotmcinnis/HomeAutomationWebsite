@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using _804ManchesterHomeControl.Models;
-using _804ManchesterHomeControl.ViewModels;
 using System.Net;
 
 namespace _804ManchesterHomeControl.Controllers
@@ -17,142 +16,45 @@ namespace _804ManchesterHomeControl.Controllers
             return View();
         }
 
-        public ActionResult IR()
+        public string AudioOn()
         {
-            return View();
-        }
-
-        public String LearnIRCode()
-        {
-            return IRWrapper.LearnCode();
-        }
-
-        public String SendIRCode(String IRCode, int randomParam)
-        {
-            return IRWrapper.SendCode(IRCode);
-        }
-        
-        public ActionResult AllDeviceCommands()
-        {
-            AutomationModelContainer dbe = new AutomationModelContainer();
-            //MyDatabaseEntities dbe = new MyDatabaseEntities();
-
-            AllDeviceCommandsViewModel vm = new AllDeviceCommandsViewModel();
-
-            foreach (Device device in dbe.Devices)
+            try
             {
-                foreach (DeviceCommand deviceCommand in device.DeviceCommands)
-                    vm.AddDeviceCommand(device.DeviceName, deviceCommand.Id, deviceCommand.Name);
+                _804M_Devices.AudioMatrix.AllZonesOn();
+                return "OK";
             }
-
-            return View("AllDeviceCommands", vm);
+            catch(Exception e)
+            {
+                return e.Message;
+            }
         }
 
-        public String ExecuteDeviceCommand(Int32 DeviceCommandId)
+        public string AudioOff()
         {
-            AutomationModelContainer dbe = new AutomationModelContainer();
-            
-            DeviceCommand deviceCommand = dbe.DeviceCommands.Single(dc => dc.Id == DeviceCommandId);
-
-            return ExecuteDeviceCommand(deviceCommand);
+            try
+            {
+                _804M_Devices.AudioMatrix.AllZonesOff();
+                return "OK";
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
         }
 
-        internal String ExecuteDeviceCommand(DeviceCommand deviceCommand)
+        public string AudioReset()
         {
-            
-            string result = String.Empty;
-
-            if (!String.IsNullOrEmpty(deviceCommand.SerialCommand))
+            try
             {
-                try
-                {
-                    SerialPortWrapper.SerialCommand serCmd = new SerialPortWrapper.SerialCommand(
-                        deviceCommand.Device.SerialPort.Value, deviceCommand.SerialCommand);
-                    serCmd.BaudRate = deviceCommand.Device.BaudRate.Value;
-                    serCmd.Hex = deviceCommand.Device.HexMode;
-                    result += SerialPortWrapper.SendSerialCommand(serCmd) + "<br/>";
-                }
-                catch (Exception ex)
-                {
-                    result += ex.Message + "<br/>";
-                }
+                _804M_Devices.AudioMatrix.AllZonesOn();
+                _804M_Devices.AudioMatrix.AllZonesSource(1);
+                _804M_Devices.AudioMatrix.AllZonesVolume(80);
+                return "OK";
             }
-
-            if (!String.IsNullOrEmpty(deviceCommand.URL) )
+            catch (Exception e)
             {
-                try
-                {
-                    WebRequest myRequest = WebRequest.Create(deviceCommand.URL);
-                    myRequest.Credentials = new NetworkCredential("admin", "McAdmin");
-                    WebResponse response = myRequest.GetResponse();
-                }
-                catch (Exception ex)
-                {
-                    result += ex.Message + "<br/>";
-                }
+                return e.Message;
             }
-
-            if(!String.IsNullOrEmpty(deviceCommand.IRCode))
-            {
-                try
-                {
-                    result += IRWrapper.SendCode(deviceCommand.IRCode);
-                }
-                catch (Exception ex)
-                {
-                    result += ex.Message + "<br/>";
-                }
-            }
-
-            return result;
-        }
-
-        public ActionResult ChooseRoom()
-        {
-            AutomationModelContainer dbe = new AutomationModelContainer();
-            
-            ChooseRoomViewModel vm = new ChooseRoomViewModel();
-
-            foreach( Models.Room room in dbe.Rooms )
-            {
-                vm.AddRoom(room.Id, room.RoomName);
-            }
-            
-            return View("ChooseRoom", vm);
-        }
-
-        public ActionResult ChooseActivity(Int32 RoomId)
-        {
-            AutomationModelContainer dbe = new AutomationModelContainer();
-            
-            ChooseActivityViewModel vm = new ChooseActivityViewModel();
-
-            Room room = dbe.Rooms.Single(rm => rm.Id == RoomId);
-
-            vm.RoomName = room.RoomName;
-            foreach (RoomActivity roomActivitiy in room.RoomActivities)
-            {
-                vm.AddActivity(roomActivitiy.Id, roomActivitiy.Activity.Activity1);
-            }
-
-            return View("ChooseActivity", vm);
-        }
-
-        public String ExecuteRoomActivity(Int32 RoomActivityId)
-        {
-            AutomationModelContainer dbe = new AutomationModelContainer();
-            
-            RoomActivity roomActivity = dbe.RoomActivities.Single(ra => ra.Id == RoomActivityId);
-
-            String result = String.Empty;
-            foreach (RequiredCommand rc in roomActivity.RequiredCommands.OrderBy( rc => rc.Sequence ))
-            {
-                result += String.Format("{0} {1}:", rc.DeviceCommand.Device.DeviceName, rc.DeviceCommand.Name);
-                result += ExecuteDeviceCommand(rc.DeviceCommand);
-                result += "</br>";
-            }
-
-            return result;
         }
     }
 }

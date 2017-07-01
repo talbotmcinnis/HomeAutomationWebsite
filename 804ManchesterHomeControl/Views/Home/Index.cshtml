@@ -1,12 +1,45 @@
-﻿    @{
+﻿﻿@using _804ManchesterHomeControl.Helpers;
+@{
     ViewBag.Title = "Home Page";
 }
-<img src="../../Images/House.png" alt="House Picture" width="125px" />
-@*<p>
-    To learn more about ASP.NET MVC visit <a href="http://asp.net/mvc" title="ASP.NET MVC Website">http://asp.net/mvc</a>.
-</p>*@
-<br />
-<h2>
-@Html.ActionLink("Want to control something?", "ChooseRoom", "Home" )
-</h2>
+@*<img src="../../Images/House.png" alt="House Picture" width=400 />*@
 
+<br />
+
+<span id="Result" style="color:Green"></span> 
+
+<table>
+    <tr>
+        <td align="center">
+            @Ajax.ImageAjaxLink(
+                Url.Content("~/Images/000122-blue-white-pearl-icon-media-music-speaker.png"),
+                "Audio On",
+                "AudioOn", "Home",
+                new { },
+                new AjaxOptions() { UpdateTargetId = "Result" }, new { width = 96 })
+            <br />
+            @Ajax.ActionLink("Audio On", "AudioOn", new { }, new AjaxOptions() { UpdateTargetId = "Result" })
+        </td>
+        <td align="center">
+            @Ajax.ImageAjaxLink(
+                Url.Content("~/Images/000076-blue-white-pearl-icon-media-a-media28-stop.png"),
+                "Audio Off",
+                "AudioOff", "Home",
+                new { },
+                new AjaxOptions() { UpdateTargetId = "Result" }, new { width = 96 })
+            <br />
+            @Ajax.ActionLink("Audio Off", "AudioOff", new { }, new AjaxOptions() { UpdateTargetId = "Result" })
+        </td>
+        <td align="center">
+            @Ajax.ImageAjaxLink(
+                Url.Content("~/Images/000134-blue-white-pearl-icon-media-tape-reel1.png"),
+                "Reset Audio",
+                "AudioReset", "Home",
+                new { },
+                new AjaxOptions() { UpdateTargetId = "Result" }, new { width = 96 })
+            <br />
+            @Ajax.ActionLink("Reset Audio", "AudioReset", new { }, new AjaxOptions() { UpdateTargetId = "Result" })
+        </td>
+
+    </tr>
+</table>
