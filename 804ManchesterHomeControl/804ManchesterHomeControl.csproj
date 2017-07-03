@@ -58,12 +58,12 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <PlatformTarget>x86</PlatformTarget>
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <PublishDatabases>false</PublishDatabases>
     <DeployIisAppPath>Default Web Site/</DeployIisAppPath>
     <PublishDatabaseSettings>
       <Objects>
-        <ObjectGroup Name="MyDatabaseConnection" Order="1">
+        <ObjectGroup Name="MyDatabaseConnection" Order="1" Enabled="False">
           <Destination Path="Data Source=%28LocalDB%29\v11.0%3bAttachDbFilename=C:\Users\whatm_000\Desktop\804ManchesterHomeControl\804ManchesterHomeControl\App_Data\MyDatabase.mdf%3bIntegrated Security=True%3bConnect Timeout=30" />
           <Object Type="DbFullSql" Enabled="False">
             <PreSource Path="" ScriptSchema="True" ScriptData="False" CopyAllFullTextCatalogs="False" DriDefaults="True" />
@@ -188,6 +188,8 @@
     <Content Include="Images\000099-blue-white-pearl-icon-media-media2-arrow-up.png" />
     <Content Include="Images\000102-blue-white-pearl-icon-media-music-cleft.png" />
     <Content Include="Images\000105-blue-white-pearl-icon-media-music-drum1.png" />
+    <Content Include="Images\000122-blue-white-pearl-icon-media-music-speaker.png" />
+    <Content Include="Images\000134-blue-white-pearl-icon-media-tape-reel1.png" />
     <Content Include="Images\091285-blue-white-pearl-icon-signs-road-stop-sign-sc44.png" />
     <Content Include="Images\Activities\Listen to AppleTV.png" />
     <Content Include="Images\Activities\Listen to HTPC Main.png" />
@@ -213,7 +215,6 @@
     <Content Include="fonts\fontawesome-webfont.ttf" />
     <Content Include="fonts\fontawesome-webfont.eot" />
     <None Include="Properties\PublishProfiles\HTPC Package.pubxml" />
-    <None Include="Properties\PublishProfiles\Profile1.pubxml" />
     <None Include="Scripts\jquery-1.5.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.5.1.js" />
     <Content Include="Scripts\jquery-1.5.1.min.js" />
