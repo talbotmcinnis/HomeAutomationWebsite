@@ -7,14 +7,14 @@ namespace _804ManchesterHomeControl.Models
 {
     public class MRC8E
     {
-        public MRC8E(int serialPort, List<int> activeZones)
+        public MRC8E(int serialPort, Dictionary<int, double> activeZones)
         {
             this.SerialPort = serialPort;
             this.ActiveZones = activeZones;
         }
 
         private int SerialPort { get; set; }
-        private List<int> ActiveZones { get; set; }
+        private Dictionary<int, double> ActiveZones { get; set; }
 
         public void AllZonesOn()
         {
@@ -28,13 +28,15 @@ namespace _804ManchesterHomeControl.Models
 
         public void AllZonesVolume(double vol_percent)
         {
-            foreach (int z in this.ActiveZones)
-                this.SendCommand(string.Format("V{0:D1}{1:D2}", z, 31 * vol_percent / 100));
+            foreach (var z in this.ActiveZones)
+            {
+                this.SendCommand(string.Format("V{0:D1}{1:D2}", z.Key, 31 * (vol_percent*z.Value) / 100));
+            }
         }
 
         public void AllZonesSource(int source)
         {
-            foreach (int z in this.ActiveZones)
+            foreach (int z in this.ActiveZones.Keys)
                 this.SendCommand(string.Format("S{0:D1}{1:D2}", z, source));
         }
 
