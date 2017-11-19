@@ -30,18 +30,20 @@ namespace _804ManchesterHomeControl.Models
         {
             foreach (var z in this.ActiveZones)
             {
-                this.SendCommand(string.Format("V{0:D1}{1:D2}", z.Key, 31 * (vol_percent*z.Value) / 100));
+                this.SendCommand(string.Format("V{0:D1}{1:D2}", z.Key, (int)(31 * (vol_percent / 100) * z.Value) ));
             }
         }
 
         public void AllZonesSource(int source)
         {
             foreach (int z in this.ActiveZones.Keys)
-                this.SendCommand(string.Format("S{0:D1}{1:D2}", z, source));
+                this.SendCommand(string.Format("S{0:D1}{1:D1}", z, source));
         }
 
         private void SendCommand(string command)
         {
+            //System.Diagnostics.Debug.WriteLine(command); return;
+
             SerialPortWrapper.SerialCommand serCmd = new SerialPortWrapper.SerialCommand(
                         this.SerialPort, command);
             serCmd.BaudRate = 4800;

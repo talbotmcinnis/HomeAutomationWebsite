@@ -48,7 +48,7 @@ namespace _804ManchesterHomeControl.Controllers
             {
                 _804M_Devices.AudioMatrix.AllZonesOn();
                 _804M_Devices.AudioMatrix.AllZonesSource(1);
-                _804M_Devices.AudioMatrix.AllZonesVolume(80);
+                _804M_Devices.AudioMatrix.AllZonesVolume(100);
                 return "OK";
             }
             catch (Exception e)
