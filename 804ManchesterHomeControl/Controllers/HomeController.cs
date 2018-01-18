@@ -16,19 +16,6 @@ namespace _804ManchesterHomeControl.Controllers
             return View();
         }
 
-        public string AudioOn()
-        {
-            try
-            {
-                _804M_Devices.AudioMatrix.AllZonesOn();
-                return "OK";
-            }
-            catch(Exception e)
-            {
-                return e.Message;
-            }
-        }
-
         public string AudioOff()
         {
             try
@@ -42,12 +29,27 @@ namespace _804ManchesterHomeControl.Controllers
             }
         }
 
-        public string AudioReset()
+        public string AudioOn_Matrix()
         {
             try
             {
                 _804M_Devices.AudioMatrix.AllZonesOn();
                 _804M_Devices.AudioMatrix.AllZonesSource(1);
+                _804M_Devices.AudioMatrix.AllZonesVolume(100);
+                return "OK";
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
+        }
+
+        public string AudioOn_AirPlay()
+        {
+            try
+            {
+                _804M_Devices.AudioMatrix.AllZonesOn();
+                _804M_Devices.AudioMatrix.AllZonesSource(2);
                 _804M_Devices.AudioMatrix.AllZonesVolume(100);
                 return "OK";
             }

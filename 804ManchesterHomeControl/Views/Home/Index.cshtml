@@ -10,15 +10,26 @@
 
 <table>
     <tr>
+        
         <td align="center">
             @Ajax.ImageAjaxLink(
-                Url.Content("~/Images/000122-blue-white-pearl-icon-media-music-speaker.png"),
-                "Audio On",
-                "AudioOn", "Home",
+                Url.Content("~/Images/000134-blue-white-pearl-icon-media-tape-reel1.png"),
+                "Listen to Basement Receiver",
+                "AudioOn_Matrix", "Home",
                 new { },
                 new AjaxOptions() { UpdateTargetId = "Result" }, new { width = 96 })
             <br />
-            @Ajax.ActionLink("Audio On", "AudioOn", new { }, new AjaxOptions() { UpdateTargetId = "Result" })
+            @Ajax.ActionLink("Listen to Basement Receiver", "AudioOn_Matrix", new { }, new AjaxOptions() { UpdateTargetId = "Result" })
+        </td>
+        <td align="center">
+            @Ajax.ImageAjaxLink(
+                Url.Content("~/Images/000092-blue-white-pearl-icon-media-ipod1.png"),
+                "Listen to AirPlay",
+                "AudioOn_AirPlay", "Home",
+                new { },
+                new AjaxOptions() { UpdateTargetId = "Result" }, new { width = 96 })
+            <br />
+            @Ajax.ActionLink("Listen to AirPlay", "AudioOn_AirPlay", new { }, new AjaxOptions() { UpdateTargetId = "Result" })
         </td>
         <td align="center">
             @Ajax.ImageAjaxLink(
@@ -30,16 +41,5 @@
             <br />
             @Ajax.ActionLink("Audio Off", "AudioOff", new { }, new AjaxOptions() { UpdateTargetId = "Result" })
         </td>
-        <td align="center">
-            @Ajax.ImageAjaxLink(
-                Url.Content("~/Images/000134-blue-white-pearl-icon-media-tape-reel1.png"),
-                "Reset Audio",
-                "AudioReset", "Home",
-                new { },
-                new AjaxOptions() { UpdateTargetId = "Result" }, new { width = 96 })
-            <br />
-            @Ajax.ActionLink("Reset Audio", "AudioReset", new { }, new AjaxOptions() { UpdateTargetId = "Result" })
-        </td>
-
     </tr>
 </table>
