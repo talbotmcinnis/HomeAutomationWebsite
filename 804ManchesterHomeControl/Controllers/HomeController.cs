@@ -44,12 +44,27 @@ namespace _804ManchesterHomeControl.Controllers
             }
         }
 
-        public string AudioOn_AirPlay()
+        public string AudioOn_Alexa()
         {
             try
             {
                 _804M_Devices.AudioMatrix.AllZonesOn();
                 _804M_Devices.AudioMatrix.AllZonesSource(2);
+                _804M_Devices.AudioMatrix.AllZonesVolume(100);
+                return "OK";
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
+        }
+
+        public string AudioOn_AirPlay()
+        {
+            try
+            {
+                _804M_Devices.AudioMatrix.AllZonesOn();
+                _804M_Devices.AudioMatrix.AllZonesSource(3);
                 _804M_Devices.AudioMatrix.AllZonesVolume(100);
                 return "OK";
             }

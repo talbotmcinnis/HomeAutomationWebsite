@@ -198,6 +198,7 @@
     <Content Include="Images\Activities\Listen to HTPC.png" />
     <Content Include="Images\Activities\Watch Rogers Cable.png" />
     <Content Include="Images\Activities\Watch AppleTV.png" />
+    <Content Include="Images\alexa.jpg" />
     <Content Include="Images\Rooms\Back Patio.png" />
     <Content Include="Images\Rooms\Basement Bar.png" />
     <Content Include="Images\Rooms\Basement Theatre.png" />

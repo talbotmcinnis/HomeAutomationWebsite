@@ -10,7 +10,7 @@
 
 <table>
     <tr>
-        
+
         <td align="center">
             @Ajax.ImageAjaxLink(
                 Url.Content("~/Images/000134-blue-white-pearl-icon-media-tape-reel1.png"),
@@ -20,6 +20,16 @@
                 new AjaxOptions() { UpdateTargetId = "Result" }, new { width = 96 })
             <br />
             @Ajax.ActionLink("Listen to Basement Receiver", "AudioOn_Matrix", new { }, new AjaxOptions() { UpdateTargetId = "Result" })
+        </td>
+        <td align="center">
+            @Ajax.ImageAjaxLink(
+                Url.Content("~/Images/alexa.jpg"),
+                "Listen to Alexa",
+                "AudioOn_Alexa", "Home",
+                new { },
+                new AjaxOptions() { UpdateTargetId = "Result" }, new { width = 65, style="padding-top:25px;padding-bottom:25px;" })
+            <br />
+            @Ajax.ActionLink("Listen to Alexa", "AudioOn_Alexa", new { }, new AjaxOptions() { UpdateTargetId = "Result" })
         </td>
         <td align="center">
             @Ajax.ImageAjaxLink(
