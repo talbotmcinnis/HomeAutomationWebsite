@@ -27,6 +27,7 @@
     <IISExpressUseClassicPipelineMode />
     <MvcProjectUpgradeChecked>true</MvcProjectUpgradeChecked>
     <UseGlobalApplicationHostFile />
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -183,6 +184,7 @@
     <Content Include="Images\000080-blue-white-pearl-icon-media-a-media292-speaker-volume-right.png" />
     <Content Include="Images\000084-blue-white-pearl-icon-media-a-media33-down.png" />
     <Content Include="Images\000085-blue-white-pearl-icon-media-a-media34-up.png" />
+    <Content Include="Images\000092-blue-white-pearl-icon-media-ipod1.png" />
     <Content Include="Images\000096-blue-white-pearl-icon-media-loud-speaker1-ps.png" />
     <Content Include="Images\000098-blue-white-pearl-icon-media-media2-arrow-down.png" />
     <Content Include="Images\000099-blue-white-pearl-icon-media-media2-arrow-up.png" />
