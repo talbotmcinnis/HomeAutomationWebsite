@@ -163,3 +163,4 @@ pip-log.txt
 .DS_Store
 /804ManchesterHomeControl.zip
 .vs/804ManchesterHomeControl/v15/Server/sqlite3/storage.ide
+.vs/
