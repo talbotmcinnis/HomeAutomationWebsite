@@ -18,7 +18,16 @@ namespace _804ManchesterHomeControl.Models
 
         public void AllZonesOn()
         {
+            
             this.SendCommand("ZA1");
+
+            // All zones on was over heating, so turn off any inactive zones
+            var z = 1;
+            do
+            {
+                if( ActiveZones.Any(az => az.Key == z) )
+                    this.SendCommand($"Z{z}0");
+            } while (++z <= 8);
         }
 
         public void AllZonesOff()

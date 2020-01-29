@@ -29,13 +29,14 @@ namespace _804ManchesterHomeControl.Controllers
             }
         }
 
+        const int FULL_VOLUME = 80; // 100 overheated and generated popping
         public string AudioOn_Matrix()
         {
             try
             {
                 _804M_Devices.AudioMatrix.AllZonesOn();
                 _804M_Devices.AudioMatrix.AllZonesSource(1);
-                _804M_Devices.AudioMatrix.AllZonesVolume(100);
+                _804M_Devices.AudioMatrix.AllZonesVolume(FULL_VOLUME);
                 return "OK";
             }
             catch (Exception e)
@@ -50,7 +51,7 @@ namespace _804ManchesterHomeControl.Controllers
             {
                 _804M_Devices.AudioMatrix.AllZonesOn();
                 _804M_Devices.AudioMatrix.AllZonesSource(2);
-                _804M_Devices.AudioMatrix.AllZonesVolume(100);
+                _804M_Devices.AudioMatrix.AllZonesVolume(FULL_VOLUME);
                 return "OK";
             }
             catch (Exception e)
@@ -65,7 +66,7 @@ namespace _804ManchesterHomeControl.Controllers
             {
                 _804M_Devices.AudioMatrix.AllZonesOn();
                 _804M_Devices.AudioMatrix.AllZonesSource(3);
-                _804M_Devices.AudioMatrix.AllZonesVolume(100);
+                _804M_Devices.AudioMatrix.AllZonesVolume(FULL_VOLUME);
                 return "OK";
             }
             catch (Exception e)
