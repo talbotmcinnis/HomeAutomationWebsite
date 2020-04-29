@@ -25,7 +25,7 @@ namespace _804ManchesterHomeControl.Models
             var z = 1;
             do
             {
-                if( ActiveZones.Any(az => az.Key == z) )
+                if( !ActiveZones.Any(az => az.Key == z) )
                     this.SendCommand($"Z{z}0");
             } while (++z <= 8);
         }
